@@ -13,8 +13,7 @@ global.wss = new WebSocket.Server({server: server});
 
 var mongodb = require('mongodb');
 var client = mongodb.MongoClient;
-// var url = "mongodb://p1:p1123@qshfu.com/p1";
-var url = "mongodb://47.106.163.160:27017";
+// var url = "mongodb://"; // 填写你的MongoDB数据库地址
 
 global.AuthKey = '2018';
 
