@@ -1,0 +1,71 @@
+
+#chatListNode {
+    min-width: 16em;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+table td {
+    vertical-align: top;
+}
+
+#chatListNode {
+    height: 40em;
+    padding-top: 1em;
+}
+
+#chatListNode .btn {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 0.4em;
+}
+
+#chatListNode .btn > .badge {
+    background-color: red;
+}
+
+#msgBoxNode {
+    border: 1px solid #999;
+    border-radius: 0.6em;
+    width: 45em;
+    height: 27em;
+    margin: 1em 0 0 1em;
+    padding: 8px;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+#msgBoxNode > span, #msgBoxNode > div {
+    display: inline-block;
+    clear: both;
+    border-radius: 0.8em;
+    padding: 0.4em;
+    margin-bottom: 0.6em;
+}
+
+#msgBoxNode > span {
+    float: left;
+    background-color: #5bc0de;
+    border-top-left-radius: 0;
+}
+
+#msgBoxNode > div {
+    float: right;
+    background-color: #c0a16b;
+    border-top-right-radius: 0;
+}
+
+#msgBoxNode img {
+    max-width: 100%;
+}
+
+#msgNode {
+    border: 1px solid #9d9d9d;
+    border-radius: 0.6em;
+    width: 36em;
+    height: 12em;
+    margin: 1em 1em 0 1em;
+    box-shadow: inset 0 0 8px #9d9d9d;
+    padding: 8px;
+    overflow-y: auto;
+}

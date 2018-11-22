@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>控制台</title>
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <script src="/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="/js/chat.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1><span>控制台</span>
+        <small><span id="tipNode" class="label label-default opacity-0"></span><span id="UserNameNode"></span> <a
+                href="/logout?url=/signin">注销</a></small>
+    </h1>
+</div>
+<div class="table">
+    <div class="table-cell">
+        <ul class="nav nav-tabs" role="tablist" id="NavNode">
+            <li class="active"><a href="#chatNode" data-toggle="tab">在线咨询</a></li>
+            <li class="display-none"><a href="#filesNode" data-toggle="tab">我的网盘</a></li>
+        </ul>
+    </div>
+    <div class="table-cell full-width">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="chatNode">
+                <div class="full-width">在线咨询</div>
+                <table>
+                    <tr>
+                        <td rowspan="2">
+                            <div id="chatListNode">
+                            </div>
+                        </td>
+                        <td colspan="2">
+                            <div id="msgBoxNode"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="msgNode" contenteditable="true"></div>
+                        </td>
+                        <td style="vertical-align: bottom">
+                            <button class="btn btn-block btn-default" style="width: 8em; display: none">链接</button>
+                            <label class="btn btn-block btn-default" style="width: 8em">
+                                图片
+                                <input type="file" accept="image/*" id="imgNode" style="display: none" />
+                            </label>
+                            <button class="btn btn-block btn-default" style="width: 8em" id="sendNode">发送</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="filesNode">
+                <div>我的网盘</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+</body>
+</html>

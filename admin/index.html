@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>控制台</title>
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/suyati-line-control-v1.2.1/editor.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <script src="/jquery/jquery-3.3.1.min.js"></script>
+    <!--<script src="/jquery/jquery-2.2.1.min.js"></script>-->
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script src="/suyati-line-control-v1.2.1/editor.js"></script>
+    <script src="/md5/md5.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/js/main.js"></script>
+</head>
+<body>
+<div class="page-header">
+    <h1><span>控制台</span>
+        <small><span id="tipNode" class="label label-default opacity-0"></span><span id="UserNameNode"></span> <a
+                href="/logout">注销</a></small>
+    </h1>
+</div>
+<div class="table">
+    <div class="table-cell">
+        <ul class="nav nav-tabs" role="tablist" id="NavNode">
+            <li class="dropdown active">
+                <a data-toggle="dropdown">首页 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#announcement" data-toggle="tab">公告</a></li>
+                    <li><a href="#homeBanner" data-toggle="tab">轮播</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a data-toggle="dropdown">医院概况 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#presidentSpeechNode" data-toggle="tab">院长致词</a></li>
+                    <li><a href="#leadershipNode" data-toggle="tab">领导班子</a></li>
+                    <li><a href="#historyNode" data-toggle="tab">发展历程</a></li>
+                    <!--<li><a href="#honorNode" data-toggle="tab">医院荣誉</a></li>-->
+                    <li><a href="#emailNode" data-toggle="tab">院长邮箱</a></li>
+                    <li><a href="#introductionNode" data-toggle="tab">医院简介</a></li>
+                    <li><a href="#outpatientNode" data-toggle="tab">门诊安排</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a data-toggle="dropdown">通讯录 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#personNode" data-toggle="tab">专家</a></li>
+                    <li><a href="#doctorNode" data-toggle="tab">医生</a></li>
+                    <li><a href="#nurseNode" data-toggle="tab">护士</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a data-toggle="dropdown">就医指南 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#treatmentNode" data-toggle="tab">就诊须知</a></li>
+                    <li><a href="#hospitalNode" data-toggle="tab">住院须知</a></li>
+                    <li><a href="#leaveHospitalNode" data-toggle="tab">出院须知</a></li>
+                    <li><a href="#registrationNode" data-toggle="tab">挂号须知</a></li>
+                    <li><a href="#medicineNode" data-toggle="tab">取药须知</a></li>
+                    <li><a href="#contactNode" data-toggle="tab">联系我们</a></li>
+                </ul>
+            </li>
+            <li><a href="#departmentNode" data-toggle="tab">科室列表</a></li>
+            <li><a href="#trendsNode" data-toggle="tab">医院动态</a></li>
+            <li><a href="#partyNode" data-toggle="tab">党建园地</a></li>
+            <li><a href="#honorNode" data-toggle="tab">医院荣誉</a></li>
+            <li><a href="#staffNode" data-toggle="tab">职工之家</a></li>
+            <li><a href="#patientsNode" data-toggle="tab">患者心声</a></li>
+            <li><a href="#healthNode" data-toggle="tab">健康讲座</a></li>
+            <li><a href="#armamentariumNode" data-toggle="tab">医疗设备</a></li>
+            <li><a href="#techniqueNode" data-toggle="tab">新项目、技术</a></li>
+            <li><a href="#policiesNode" data-toggle="tab">政策法规</a></li>
+            <li><a href="#recruitmentNode" data-toggle="tab">人才招聘</a></li>
+            <li><a href="#imgNode" data-toggle="tab">图库</a></li>
+            <li><a href="#fileNode" data-toggle="tab">文件库</a></li>
+        </ul>
+    </div>
+    <div class="table-cell full-width">
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="announcement">
+                <div>公告</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label for="filterAnnouncementTitle">标题</label>
+                        <input type="text" class="form-control" id="filterAnnouncementTitle" placeholder="标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="filterAnnouncementWriter">作者</label>
+                        <input type="text" class="form-control" id="filterAnnouncementWriter" placeholder="作者">
+                    </div>
+                    <div class="form-group">
+                        <label for="filterAnnouncementSource">来源</label>
+                        <input type="text" class="form-control" id="filterAnnouncementSource" placeholder="来源">
+                    </div>
+                    <button type="button" class="btn btn-info" id="filterAnnouncementBtn">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(1)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination" id="announcementPagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="homeBanner">
+                <div>轮播</div>
+                <table class="table table-striped home-banner">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>图片</th>
+                        <th>链接</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addHomeBanner"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <!--<textarea title="" id="homeTxtEditor"></textarea>-->
+            </div>
+            <div class="tab-pane fade" id="presidentSpeechNode">
+                <div>院长致词</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="leadershipNode">
+                <div>领导班子</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            姓名
+                            <input type="text" class="form-control" name="realname" placeholder="姓名">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职位
+                            <input type="text" class="form-control" name="position" placeholder="职位">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterLeadership()">搜索</button>
+                </form>
+                <table class="table table-striped leadership">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>照片</th>
+                        <th>姓名</th>
+                        <th>职位</th>
+                        <th>详细</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addLeadershipNode"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="historyNode">
+                <div>发展历程</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="emailNode">
+                <div>院长邮箱</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            邮箱
+                            <input type="email" class="form-control" name="email" size="40" />
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setEmail(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="introductionNode">
+                <div>医院简介</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="outpatientNode">
+                <div>门诊安排</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <!--<div class="tab-pane fade" id="honorNode">-->
+                <!--<div>医院荣誉</div>-->
+                <!--<form>-->
+                    <!--<div class="form-group">-->
+                        <!--<label>-->
+                            <!--内容-->
+                        <!--</label>-->
+                        <!--<textarea name="content"></textarea>-->
+                    <!--</div>-->
+                    <!--<button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>-->
+                <!--</form>-->
+            <!--</div>-->
+            <div class="tab-pane fade" id="treatmentNode">
+                <div>就诊须知</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="hospitalNode">
+                <div>住院须知</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="leaveHospitalNode">
+                <div>出院须知</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="registrationNode">
+                <div>挂号须知</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="medicineNode">
+                <div>取药须知</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="contactNode">
+                <div>联系我们</div>
+                <form>
+                    <div class="form-group">
+                        <label>
+                            内容
+                        </label>
+                        <textarea name="content"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="setSpecial(this)">保存</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="departmentNode">
+                <div>科室列表</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            名称
+                            <input type="text" class="form-control" name="name1" placeholder="名称">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            分类
+                            <input type="text" class="form-control" name="class1" placeholder="分类">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterDepartment()">搜索</button>
+                </form>
+                <table class="table table-striped department">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>科室</th>
+                        <th>分类</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addDepartmentNode"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="personNode">
+                <div>专家</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            姓名
+                            <input type="text" class="form-control" name="name1" placeholder="姓名">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            电话
+                            <input type="tel" class="form-control" name="tel" placeholder="电话">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            科室
+                            <input type="text" class="form-control" name="department" placeholder="科室">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职务
+                            <input type="text" class="form-control" name="duty" placeholder="职务">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职称
+                            <input type="text" class="form-control" name="title" placeholder="职称">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            教学任职
+                            <input type="text" style="width: calc(13em + 5px)" class="form-control" name="position" placeholder="教学任职">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterPerson()">搜索</button>
+                </form>
+                <table class="table table-striped person">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>照片</th>
+                        <th>姓名</th>
+                        <th>电话</th>
+                        <th>科室</th>
+                        <th>职务</th>
+                        <th>职称</th>
+                        <th>教学任职</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addPersonNode" onclick="getDepartmentList(addPersonNode)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="doctorNode">
+                <div>医生</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            姓名
+                            <input type="text" class="form-control" name="name1" placeholder="姓名">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            电话
+                            <input type="tel" class="form-control" name="tel" placeholder="电话">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            科室
+                            <input type="text" class="form-control" name="department" placeholder="科室">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职务
+                            <input type="text" class="form-control" name="duty" placeholder="职务">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职称
+                            <input type="text" class="form-control" name="title" placeholder="职称">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            教学任职
+                            <input type="text" style="width: calc(13em + 5px)" class="form-control" name="position" placeholder="教学任职">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterPerson()">搜索</button>
+                </form>
+                <table class="table table-striped person">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>照片</th>
+                        <th>姓名</th>
+                        <th>电话</th>
+                        <th>科室</th>
+                        <th>职务</th>
+                        <th>职称</th>
+                        <th>教学任职</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addPersonNode" onclick="getDepartmentList(addPersonNode)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="nurseNode">
+                <div>护士</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            姓名
+                            <input type="text" class="form-control" name="name1" placeholder="姓名">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            电话
+                            <input type="tel" class="form-control" name="tel" placeholder="电话">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            科室
+                            <input type="text" class="form-control" name="department" placeholder="科室">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职务
+                            <input type="text" class="form-control" name="duty" placeholder="职务">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职称
+                            <input type="text" class="form-control" name="title" placeholder="职称">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            教学任职
+                            <input type="text" style="width: calc(13em + 5px)" class="form-control" name="position" placeholder="教学任职">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterPerson()">搜索</button>
+                </form>
+                <table class="table table-striped person">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>照片</th>
+                        <th>姓名</th>
+                        <th>电话</th>
+                        <th>科室</th>
+                        <th>职务</th>
+                        <th>职称</th>
+                        <th>教学任职</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addPersonNode" onclick="getDepartmentList(addPersonNode)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="trendsNode">
+                <div>医院动态</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterTrends()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(2)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="partyNode">
+                <div>党建园地</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterParty()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(7)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="honorNode">
+                <div>医院荣誉</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterHonor()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(8)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="staffNode">
+                <div>职工之家</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterStaff()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(9)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="patientsNode">
+                <div>患者心声</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterPatients()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(10)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="healthNode">
+                <div>健康讲座</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterHealth()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(11)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="armamentariumNode">
+                <div>医疗设备</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterArmamentarium()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(4)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="techniqueNode">
+                <div>新项目、技术</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterTechnique()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(5)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="policiesNode">
+                <div>政策法规</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterPolicies()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(6)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="recruitmentNode">
+                <div>人才招聘</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            作者
+                            <input class="form-control" name="writer" placeholder="作者">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            来源
+                            <input class="form-control" name="source" placeholder="来源">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterRecruitment()">搜索</button>
+                </form>
+                <table class="table table-striped announcement">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>来源</th>
+                        <th>日期</th>
+                        <th>
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addAnnouncement" onclick="addAnnouncementSetting(3)"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="imgNode">
+                <div>图库</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label for="filterAnnouncementTitle">标题</label>
+                        <input type="text" class="form-control" id="imgNodeTitle" placeholder="标题">
+                    </div>
+                    <button type="button" class="btn btn-info" id="imgNodeBtn">搜索</button>
+                </form>
+                <table class="table table-striped images">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>链接</th>
+                        <th>日期</th>
+                        <th>预览</th>
+                        <th style="white-space: nowrap">
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addImgNode"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody style="white-space: nowrap">
+                    </tbody>
+                </table>
+                <ul class="pagination" id="imagesPagination">
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="fileNode">
+                <div>文件库</div>
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label>
+                            标题
+                            <input type="text" class="form-control" name="title" placeholder="标题">
+                        </label>
+                    </div>
+                    <button type="button" class="btn btn-info" onclick="filterFiles()">搜索</button>
+                </form>
+                <table class="table table-striped files">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>标题</th>
+                        <th>链接</th>
+                        <th>日期</th>
+                        <th style="white-space: nowrap">
+                            操作
+                            <span class="glyphicon1 glyphicon glyphicon-plus-sign color-success"
+                                  data-toggle="modal" data-target="#addFileNode"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody style="white-space: nowrap">
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="addHomeBanner" tabindex="-1" role="dialog" aria-labelledby="addHomeBannerLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addHomeBannerLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="homeBannerUrl">链接</label>
+                    <input class="form-control" id="homeBannerUrl" placeholder="/test/url">
+                </div>
+                <div class="form-group">
+                    <label for="homeBannerPic">图片</label>
+                    <img class="img-thumbnail img1">
+                    <input type="file" accept="image/*" id="homeBannerPic">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="addHomeBanner()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editHomeBanner" tabindex="-1" role="dialog" aria-labelledby="editHomeBannerLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editHomeBannerLabel">修改</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="homeBannerUrl">链接</label>
+                    <input class="form-control" id="editHomeBannerUrl" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="homeBannerPic">图片</label>
+                    <img id="editHomeBannerPic0" class="img-thumbnail img1">
+                    <input type="file" accept="image/*" id="editHomeBannerPic">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="editHomeBannerBtn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addAnnouncement" tabindex="-1" role="dialog" aria-labelledby="addAnnouncementLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addAnnouncementLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="addAnnouncementTitle">标题</label>
+                    <input class="form-control" id="addAnnouncementTitle" placeholder="标题">
+                </div>
+                <div class="form-group">
+                    <label for="addAnnouncementWriter">作者</label>
+                    <input class="form-control" id="addAnnouncementWriter" placeholder="作者">
+                </div>
+                <div class="form-group">
+                    <label for="addAnnouncementSource">来源</label>
+                    <input class="form-control" id="addAnnouncementSource" placeholder="来源">
+                </div>
+                <div class="form-group">
+                    <label for="addAnnouncementContent">正文</label>
+                    <textarea class="form-control" id="addAnnouncementContent" placeholder="来源"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="addAnnouncement()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editAnnouncement" tabindex="-1" role="dialog" aria-labelledby="editAnnouncementLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editAnnouncementLabel">修改</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editAnnouncementTitle">标题</label>
+                    <input class="form-control" id="editAnnouncementTitle" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="editAnnouncementWriter">作者</label>
+                    <input class="form-control" id="editAnnouncementWriter" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="editAnnouncementSource">来源</label>
+                    <input class="form-control" id="editAnnouncementSource" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="editAnnouncementContent">正文</label>
+                    <textarea class="form-control" id="editAnnouncementContent" placeholder="来源"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" id="editAnnouncementBtn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addLeadershipNode" tabindex="-1" role="dialog" aria-labelledby="addLeadershipNodeLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addLeadershipNodeLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>
+                            名字
+                        </label>
+                        <input class="form-control" name="realname" placeholder="名字">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职位
+                        </label>
+                        <input class="form-control" name="position" placeholder="职位">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            图片
+                            <img class="img-thumbnail img2">
+                            <input type="file" accept="image/*" name="img">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            详细
+                        </label>
+                        <textarea class="form-control" rows="12" name="detail"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="addLeadership()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editLeadershipNode" tabindex="-1" role="dialog" aria-labelledby="editLeadershipNodeLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editLeadershipNodeLabel">修改</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>
+                            名字
+                        </label>
+                        <input class="form-control" name="realname" placeholder="名字">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职位
+                        </label>
+                        <input class="form-control" name="position" placeholder="职位">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            图片
+                            <img class="img-thumbnail img2">
+                            <input type="file" accept="image/*" name="img">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            详细
+                        </label>
+                        <textarea class="form-control" rows="12" name="detail"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="editLeadership()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addDepartmentNode" tabindex="-1" role="dialog" aria-labelledby="addDepartmentNodeLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addDepartmentNodeLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>
+                            名称
+                            <input class="form-control" name="name1" placeholder="名称">
+                        </label>
+                        <label style="margin-left: 2em">
+                            分类
+                            <input class="form-control" name="class1" placeholder="分类">
+                        </label>
+                        <label style="margin-left: 2em">
+                            科室主任
+                            <input class="form-control" type="tel" name="tel" placeholder="电话">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            照片
+                            <img class="img-thumbnail img1">
+                            <input type="file" accept="image/*" name="img">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            科室介绍
+                        </label>
+                        <textarea name="presentation"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="addDepartment()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editDepartmentNode" tabindex="-1" role="dialog" aria-labelledby="editDepartmentNodeLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editDepartmentNodeLabel">修改</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>
+                            名称
+                            <input class="form-control" name="name1" placeholder="名称">
+                        </label>
+                        <label style="margin-left: 2em">
+                            分类
+                            <input class="form-control" name="class1" placeholder="分类">
+                        </label>
+                        <label style="margin-left: 2em">
+                            科室主任
+                            <input class="form-control" type="tel" name="tel" placeholder="电话">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            照片
+                            <img class="img-thumbnail img1">
+                            <input type="file" accept="image/*" name="img">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            科室介绍
+                        </label>
+                        <textarea name="presentation"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="editDepartment()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addPersonNode" tabindex="-1" role="dialog" aria-labelledby="addPersonNodeNodeLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addPersonNodeNodeLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>
+                            姓名
+                            <input class="form-control" name="name1" placeholder="姓名">
+                        </label>
+                        <label style="margin-left: 2em">
+                            电话
+                            <input class="form-control" type="tel" name="tel" placeholder="电话">
+                        </label>
+                        <label style="margin-left: 2em">
+                            科室
+                            <select class="form-control" name="department" style="width: calc(15em + 5px)"></select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职务
+                            <input class="form-control" name="duty" placeholder="职务">
+                        </label>
+                        <label style="margin-left: 2em">
+                            职称
+                            <input class="form-control" name="title" placeholder="职称">
+                        </label>
+                        <label style="margin-left: 2em">
+                            教学任职
+                            <input class="form-control" name="position" placeholder="教学任职">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            照片
+                            <img class="img-thumbnail img2">
+                            <input type="file" accept="image/*" name="img">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            擅长
+                        </label>
+                        <textarea class="form-control" rows="4" name="adept"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            详细介绍
+                        </label>
+                        <textarea class="form-control" rows="7" name="detail"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="addPerson()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editPersonNode" tabindex="-1" role="dialog" aria-labelledby="editPersonNodeLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editPersonNodeLabel">修改</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>
+                            姓名
+                            <input class="form-control" name="name1" placeholder="姓名">
+                        </label>
+                        <label style="margin-left: 2em">
+                            电话
+                            <input class="form-control" type="tel" name="tel" placeholder="电话">
+                        </label>
+                        <label style="margin-left: 2em">
+                            科室
+                            <select class="form-control" name="department" style="width: calc(15em + 5px)"></select>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            职务
+                            <input class="form-control" name="duty" placeholder="职务">
+                        </label>
+                        <label style="margin-left: 2em">
+                            职称
+                            <input class="form-control" name="title" placeholder="职称">
+                        </label>
+                        <label style="margin-left: 2em">
+                            教学任职
+                            <input class="form-control" name="position" placeholder="教学任职">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            照片
+                            <img class="img-thumbnail img2">
+                            <input type="file" accept="image/*" name="img">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            擅长
+                        </label>
+                        <textarea class="form-control" rows="4" name="adept"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            详细介绍
+                        </label>
+                        <textarea class="form-control" rows="7" name="detail"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="editPerson()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addImgNode" tabindex="-1" role="dialog" aria-labelledby="addImgNodeLabel"
+     style="z-index: 2001">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addImgNodeLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="homeBannerUrl">标题</label>
+                    <input class="form-control" id="addImgNodeTitle" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="homeBannerPic">图片</label>
+                    <img class="img-thumbnail img1">
+                    <input type="file" accept="image/*" id="addImgNodePic">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="addImage()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="imagesNode" tabindex="-1" role="dialog" aria-labelledby="imagesNodeLabel"
+     style="z-index: 2000">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="editImgNodeLabel">图库</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label for="filterAnnouncementTitle">标题</label>
+                        <input type="text" class="form-control" id="imagesNodeTitle" placeholder="标题">
+                    </div>
+                    <button type="button" class="btn btn-info" id="imagesNodeSearchBtn">搜索</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addImgNode">添加
+                    </button>
+                </form>
+                <table class="table table-striped images">
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>标题</th>
+                        <th>预览</th>
+                    </tr>
+                    </thead>
+                    <tbody style="white-space: nowrap">
+                    </tbody>
+                </table>
+                <ul class="pagination" id="imagesNodePagination">
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="imagesNodeBtn">选择</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addFileNode" tabindex="-1" role="dialog" aria-labelledby="addFileNodeLabel"
+     style="z-index: 2001">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addFileNodeLabel">添加</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="homeBannerUrl">标题</label>
+                        <input class="form-control" name="title" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="homeBannerPic">文件</label>
+                        <input type="file" name="file">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" onclick="addFile()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="filesNode" tabindex="-1" role="dialog" aria-labelledby="filesNodeLabel"
+     style="z-index: 2000">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="filesNodeLabel">图库</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline form-inline1">
+                    <div class="form-group">
+                        <label for="filterAnnouncementTitle">标题</label>
+                        <input type="text" class="form-control" placeholder="标题">
+                    </div>
+                    <button type="button" class="btn btn-info">搜索</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addFileNode">添加
+                    </button>
+                </form>
+                <table class="table table-striped files">
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>标题</th>
+                        <th>日期</th>
+                    </tr>
+                    </thead>
+                    <tbody style="white-space: nowrap">
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal" id="filesNodeBtn">选择</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

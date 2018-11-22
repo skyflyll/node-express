@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>控制台</title>
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <script src="/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="/md5/md5.js"></script>
+    <style>
+        .form-horizontal {
+            width: 32em;
+            margin: 0 auto;
+            margin-top: 12em;
+        }
+        #code {
+            width: calc(100% - 120px);
+            display: inline-block;
+        }
+        #code + img {
+            width: 100px;
+            float: right;
+            position: relative;
+            top: -3px;
+            left: -8px;
+        }
+        #msgNode {
+            text-align: center;
+            color: red;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+<div class="page-header">
+    <h1><span>控制台</span><small id="statusNode"></small></h1>
+</div>
+<form class="form-horizontal" method="post" enctype="multipart/form-data" onsubmit="this.pwd.value=md5(this.pwd.value)">
+    <h3 id="msgNode">&nbsp;</h3>
+    <div class="form-group">
+        <label for="uid" class="col-sm-2 control-label">账号</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="uid" name="uid" placeholder="账号">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="pwd" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="密码">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="code" class="col-sm-2 control-label">验证码</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="code" name="code" placeholder="验证码">
+            <img src="/code" onclick="this.src='/code?v='+Date.now()">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="rm" name="rm" checked> 自动登录
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">登陆</button>
+        </div>
+    </div>
+</form>
+<script>
+
+    var html = '<a href="/forget">重置密码</a>';
+
+    if (location.pathname === "/login")
+
+        html = '登录';
+
+    document.getElementById("statusNode").innerHTML = html;
+
+    var search = location.search;
+
+    if (search.indexOf("?msg=") === 0) {
+
+        var msg = search.replace("?msg=", "");
+
+        if (search.indexOf("&") > 0) {
+
+            msg = msg.substring(0, search.indexOf("&"));
+        }
+
+        msgNode.innerHTML = decodeURI(msg);
+    }
+
+</script>
+</body>
+</html>
